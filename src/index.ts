@@ -7,7 +7,8 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 const morgan = require('morgan');
 const fs = require('fs');
-var path = require('path');
+const path = require('path');
+const cors = require('cors');
 
 // Add built in middleware to deconstruct url parameters content-type: application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
@@ -17,7 +18,17 @@ app.use(express.json()); // Middleware to use json body data
 var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.log'), { flags: 'a' })
 
 // setup the logger
-app.use(morgan('combined', { stream: accessLogStream }))
+app.use(morgan('combined', { stream: accessLogStream }));
+
+// Allow cros origin resource sharing
+const whitelist = ['http://localhost:5173']
+const corsOptions = {
+  origin: (origin: string, callback: any) => {
+    whitelist.indexOf(origin) !== -1 ? callback(null, true) : callback(new Error('not allowed by cors'));
+  },
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
