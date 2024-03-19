@@ -1,0 +1,6 @@
+{
+    "plants":[
+        { "id": "1", "genus": "populous", "species": "tremuloides", "family":"populaceae", "commonName": "trembling aspen", "petals": 2, "sepals":2 },
+        { "id": "2", "genus": "betula", "species": "papyrifera", "family": "betulaceae", "commonName": "white birch", "petals": 3, "sepals": 2 }
+    ]
+}

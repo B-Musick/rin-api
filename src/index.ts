@@ -21,14 +21,17 @@ var accessLogStream = fs.createWriteStream(path.join(__dirname, 'logs/access.log
 app.use(morgan('combined', { stream: accessLogStream }));
 
 // Allow cros origin resource sharing
-const whitelist = ['http://localhost:5173']
-const corsOptions = {
-  origin: (origin: string, callback: any) => {
-    whitelist.indexOf(origin) !== -1 ? callback(null, true) : callback(new Error('not allowed by cors'));
-  },
-  optionsSuccessStatus: 200
-}
-app.use(cors(corsOptions));
+// const whitelist = ['http://localhost:5173', 'http://localhost:3000']
+// const corsOptions = {
+//   origin: (origin: string, callback: any) => {
+//     whitelist.indexOf(origin) !== -1 ? callback(null, true) : callback(new Error('not allowed by cors'));
+//   },
+//   optionsSuccessStatus: 200
+// }
+// app.use(cors(corsOptions));
+
+// Router
+app.use('/plants', require('./routes/api/plants'));
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");

@@ -6,3 +6,4 @@ https://blog.logrocket.com/how-to-set-up-node-typescript-express/
 
 # Implemented logger middleware
 https://expressjs.com/en/resources/middleware/morgan.html
+https://www.digitalocean.com/community/tutorials/nodejs-getting-started-morgan
